@@ -128,7 +128,7 @@ The system uses a relational PostgreSQL database with the following core entitie
 
 | Dashboard | Product Management |
 | :---: | :---: |
-| ![Dashboard](.screenshots/dashboard.png) | ![Products](./screenshots/products.png) |
+| ![Dashboard](./screenshots/dashboard.png) | ![Products](./screenshots/products.png) |
 
 | Category Management | Stock Tracking |
 | :---: | :---: |
