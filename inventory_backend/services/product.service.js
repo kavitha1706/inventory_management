@@ -62,8 +62,6 @@ exports.getProducts = async ({
   status = null
 }) => {
 
-  const { Op } = require("sequelize");
-
   const allowedSort = ["name", "price", "quantity", "createdAt"];
   if (!allowedSort.includes(sort)) sort = "createdAt";
 
