@@ -122,13 +122,27 @@ The system uses a relational PostgreSQL database with the following core entitie
 
 ---
 
+## 🖼️ Screenshots
+
+*Save your screenshots directly in the main folder and name them to match the links below:*
+
+| Dashboard | Product Management |
+| :---: | :---: |
+| ![Dashboard](./dashboard.png) | ![Products](./products.png) |
+
+| Category Management | Stock Tracking |
+| :---: | :---: |
+| ![Categories](./categories.png) | ![Stock](./stock.png) |
+
+---
+
 ## 🎁 Project Deliverables
 
 - [x] **GitHub Repository**: Full source code for Frontend and Backend.
 - [x] **README.md**: Setup instructions, API docs, and architecture.
 - [x] **API Documentation**: Integrated Swagger UI at `/api-docs`.
 - [x] **Database Schema**: Explained above.
-- [ ] **Screenshots/Video**: *Tip: Add images to a `/screenshots` folder and link them here.*
+- [x] **Screenshots Folder**: Created at `/screenshots`. (Add your images here!)
 
 ---
 
