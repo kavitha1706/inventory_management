@@ -155,9 +155,4 @@ The system uses a relational PostgreSQL database with the following core entitie
 Once the backend is running, you can access the interactive API documentation at:
 [http://localhost:5000/api-docs](http://localhost:5000/api-docs)
 
----
-
-##  License
-This project is licensed under the MIT License.
-
 
