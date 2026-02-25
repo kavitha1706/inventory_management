@@ -2,7 +2,7 @@
 
 A modern, full-stack inventory management application designed to track products, categories, and stock levels with role-based access control and a premium dashboard.
 
-## 🚀 Features
+## Features
 
 - **Dashboard**: High-level overview of inventory status and metrics.
 - **Product Management**: Create, update, and track products with image uploads.
@@ -11,7 +11,7 @@ A modern, full-stack inventory management application designed to track products
 - **Role-Based Access**: Permission-based interface for Admins and Staff.
 - **API Documentation**: Interactive Swagger UI for backend API exploration.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Backend
 - **Node.js & Express**: Core server framework.
@@ -29,7 +29,7 @@ A modern, full-stack inventory management application designed to track products
 
 ---
 
-## 📋 Prerequisites
+##  Prerequisites
 
 Before you begin, ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (v18 or higher recommended)
@@ -38,7 +38,7 @@ Before you begin, ensure you have the following installed:
 
 ---
 
-## ⚙️ Setup Instructions
+## Setup Instructions
 
 ### 1. Clone the Repository
 ```bash
@@ -68,7 +68,7 @@ npm install
    UPLOAD_DIR=uploads
    ```
 
-### 3. Frontend Setup
+### Frontend Setup
 Navigate to the frontend directory and install dependencies:
 ```bash
 cd ../inventory_frontend
@@ -77,7 +77,7 @@ npm install
 
 ---
 
-## 🏃 Running the Application
+## Running the Application
 
 ### Start the Backend
 From the `inventory_backend` directory:
@@ -95,7 +95,7 @@ The application will be available at [http://localhost:5173](http://localhost:51
 
 ---
 
-## 🏗️ Database Schema
+## Database Schema
 
 The system uses a relational PostgreSQL database with the following core entities:
 
@@ -122,7 +122,7 @@ The system uses a relational PostgreSQL database with the following core entitie
 
 ---
 
-## 🖼️ Screenshots
+## Screenshots
 
 *Save your screenshots directly in the main folder and name them to match the links below:*
 
@@ -140,7 +140,7 @@ The system uses a relational PostgreSQL database with the following core entitie
 
 ---
 
-## 🎁 Project Deliverables
+## Project Deliverables
 
 - [x] **GitHub Repository**: Full source code for Frontend and Backend.
 - [x] **README.md**: Setup instructions, API docs, and architecture.
@@ -150,14 +150,14 @@ The system uses a relational PostgreSQL database with the following core entitie
 
 ---
 
-## 📖 API Documentation
+##  API Documentation
 
 Once the backend is running, you can access the interactive API documentation at:
 [http://localhost:5000/api-docs](http://localhost:5000/api-docs)
 
 ---
 
-## 📄 License
+##  License
 This project is licensed under the MIT License.
 
 
