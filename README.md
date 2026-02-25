@@ -95,6 +95,43 @@ The application will be available at [http://localhost:5173](http://localhost:51
 
 ---
 
+## 🏗️ Database Schema
+
+The system uses a relational PostgreSQL database with the following core entities:
+
+### 1. **Users**
+- `id`: Primary Key
+- `name`: Full name of the user
+- `email`: Unique login email
+- `password`: Hashed password
+- `role`: Access level (`admin` or `staff`)
+
+### 2. **Categories**
+- `id`: Primary Key
+- `name`: Category name (e.g., Electronics)
+- `description`: Optional text summary
+- `isDeleted`: Boolean for soft deletion
+
+### 3. **Products**
+- `id`: Primary Key
+- `name`: Product name
+- `price`: Unit price (Decimal)
+- `quantity`: Current stock level
+- `image`: Filename of the uploaded image
+- `categoryId`: Foreign Key linking to Categories
+
+---
+
+## 🎁 Project Deliverables
+
+- [x] **GitHub Repository**: Full source code for Frontend and Backend.
+- [x] **README.md**: Setup instructions, API docs, and architecture.
+- [x] **API Documentation**: Integrated Swagger UI at `/api-docs`.
+- [x] **Database Schema**: Explained above.
+- [ ] **Screenshots/Video**: *Tip: Add images to a `/screenshots` folder and link them here.*
+
+---
+
 ## 📖 API Documentation
 
 Once the backend is running, you can access the interactive API documentation at:

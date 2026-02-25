@@ -8,6 +8,9 @@ const StockPage = () => {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const limit = 10;
 
     const [filters, setFilters] = useState({
         categoryId: "",
@@ -29,15 +32,17 @@ const StockPage = () => {
             const res = await getStockData({
                 categoryId: filters.categoryId,
                 status: filters.status,
-                limit: 100
+                page,
+                limit
             });
             setProducts(res.data?.data || []);
+            setTotalPages(res.data?.pages || 1);
         } catch {
             toast.error("Failed to fetch stock data");
         } finally {
             setLoading(false);
         }
-    }, [filters]);
+    }, [filters, page]);
 
     useEffect(() => {
         fetchCategories();
@@ -50,6 +55,7 @@ const StockPage = () => {
     const handleFilterChange = (e) => {
         const { name, value } = e.target;
         setFilters(prev => ({ ...prev, [name]: value }));
+        setPage(1); // Reset to page 1 on filter change
     };
 
     return (
@@ -96,8 +102,8 @@ const StockPage = () => {
             </div>
 
             {/* TABLE CARD */}
-            <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
-                <div className="overflow-x-auto">
+            <div className="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden flex flex-col min-h-[500px]">
+                <div className="overflow-x-auto flex-grow">
                     <table className="w-full text-left text-sm">
 
                         {/* TABLE HEADER */}
@@ -165,7 +171,7 @@ const StockPage = () => {
                                         <td className="px-6 py-3">
                                             <span className={
                                                 `px-2 py-1 rounded-full text-xs font-semibold
-                        ${prod.quantity === 0
+                                                ${prod.quantity === 0
                                                     ? "bg-rose-50 text-rose-600"
                                                     : prod.quantity <= 10
                                                         ? "bg-amber-50 text-amber-600"
@@ -184,6 +190,27 @@ const StockPage = () => {
                             )}
                         </tbody>
                     </table>
+                </div>
+                <div className="px-6 py-4 border-t border-slate-50 bg-slate-50/50 flex items-center justify-between mt-auto">
+                    <p className="text-xs text-slate-500 font-medium">
+                        Page <span className="text-slate-900">{page}</span> of <span className="text-slate-900">{totalPages}</span>
+                    </p>
+                    <div className="flex gap-2">
+                        <button
+                            onClick={() => setPage(p => Math.max(1, p - 1))}
+                            disabled={page === 1 || loading}
+                            className="px-4 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-95"
+                        >
+                            Previous
+                        </button>
+                        <button
+                            onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                            disabled={page === totalPages || loading}
+                            className="px-4 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-95"
+                        >
+                            Next
+                        </button>
+                    </div>
                 </div>
             </div>
         </Layout>

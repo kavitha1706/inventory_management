@@ -103,7 +103,7 @@ const CategoryPage = () => {
                 )}
             </div>
 
-            <div className="bg-white rounded shadow-sm border-t-4 border-[#3c8dbc] overflow-hidden">
+            <div className="bg-white rounded shadow-sm overflow-hidden">
                 <div className="p-4 border-b flex items-center justify-between gap-4">
                     <div className="relative flex-1 max-w-xs">
                         <input

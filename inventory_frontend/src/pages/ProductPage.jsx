@@ -15,6 +15,9 @@ const ProductPage = () => {
     const [search, setSearch] = useState("");
     const [sort, setSort] = useState("createdAt");
     const [order, setOrder] = useState("DESC");
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const limit = 10;
 
     // Modal states
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,18 +26,23 @@ const ProductPage = () => {
     const fetchProducts = useCallback(async () => {
         setLoading(true);
         try {
-            const res = await getProducts({ search, sort, order });
+            const res = await getProducts({ search, sort, order, page, limit });
             setProducts(res.data?.data || []);
+            setTotalPages(res.data?.pages || 1);
         } catch (err) {
             toast.error("Failed to fetch products");
         } finally {
             setLoading(false);
         }
-    }, [search, sort, order]);
+    }, [search, sort, order, page]);
 
     useEffect(() => {
         fetchProducts();
     }, [fetchProducts]);
+
+    useEffect(() => {
+        setPage(1);
+    }, [search]);
 
     const handleAddClick = () => {
         setCurrentProduct(null);
@@ -86,7 +94,7 @@ const ProductPage = () => {
                 )}
             </div>
 
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col min-h-[600px]">
                 <div className="p-4 border-b border-slate-50">
                     <div className="relative max-w-xs">
                         <input
@@ -99,7 +107,7 @@ const ProductPage = () => {
                     </div>
                 </div>
 
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto flex-grow">
                     <table className="w-full text-left text-sm">
                         <thead className="bg-slate-50/50 text-slate-500 font-semibold border-b border-slate-50">
                             <tr>
@@ -195,6 +203,29 @@ const ProductPage = () => {
                             )}
                         </tbody>
                     </table>
+                </div>
+
+                {/* Pagination UI */}
+                <div className="px-6 py-4 border-t border-slate-50 bg-slate-50/30 flex items-center justify-between">
+                    <p className="text-xs text-slate-500 font-medium">
+                        Page <span className="text-slate-900">{page}</span> of <span className="text-slate-900">{totalPages}</span>
+                    </p>
+                    <div className="flex gap-2">
+                        <button
+                            onClick={() => setPage(p => Math.max(1, p - 1))}
+                            disabled={page === 1 || loading}
+                            className="px-4 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-95"
+                        >
+                            Previous
+                        </button>
+                        <button
+                            onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                            disabled={page === totalPages || loading}
+                            className="px-4 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-95"
+                        >
+                            Next
+                        </button>
+                    </div>
                 </div>
             </div>
 

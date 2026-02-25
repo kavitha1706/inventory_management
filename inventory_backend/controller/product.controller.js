@@ -83,12 +83,13 @@ exports.getProducts = async (req, res) => {
 // GET STOCK DATA
 exports.getStockData = async (req, res) => {
     try {
-        const { categoryId, status } = req.query;
+        const { page, limit, categoryId, status } = req.query;
 
         const result = await productService.getProducts({
+            page,
+            limit: limit || 10,
             categoryId,
-            status,
-            limit: 100 // Default to a larger limit for stock overview
+            status
         });
 
         res.json(result);
