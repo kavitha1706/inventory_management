@@ -134,6 +134,10 @@ The system uses a relational PostgreSQL database with the following core entitie
 | :---: | :---: |
 | ![Categories](./screenshots/categories.png) | ![Stock](./screenshots/stock.png) |
 
+| Add Category | Add Product |
+| :---: | :---: |
+| ![Add Category](./screenshots/add_category.png) | ![Add Product](./screenshots/add_product.png) |
+
 ---
 
 ## 🎁 Project Deliverables
@@ -155,3 +159,5 @@ Once the backend is running, you can access the interactive API documentation at
 
 ## 📄 License
 This project is licensed under the MIT License.
+
+
