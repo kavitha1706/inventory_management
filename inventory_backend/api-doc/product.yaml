@@ -1,0 +1,156 @@
+/product:
+  get:
+    tags:
+      - Product
+    summary: Get all products
+    parameters:
+      - in: query
+        name: search
+        schema:
+          type: string
+        description: Search by product name
+      - in: query
+        name: sort
+        schema:
+          type: string
+        description: Field to sort by (e.g., name, price, quantity)
+      - in: query
+        name: order
+        schema:
+          type: string
+          enum: [ASC, DESC]
+        description: Sort order
+      - in: query
+        name: categoryId
+        schema:
+          type: string
+        description: Filter by category ID
+      - in: query
+        name: status
+        schema:
+          type: string
+          enum: [in-stock, low-stock, out-of-stock]
+        description: Filter by stock status
+      - in: query
+        name: page
+        schema:
+          type: integer
+          default: 1
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 10
+    responses:
+      200:
+        description: List of products retrieved successfully
+  post:
+    tags:
+      - Product
+    summary: Create a new product (Admin/Manager only)
+    security:
+      - bearerAuth: []
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            required:
+              - name
+              - categoryId
+              - price
+              - quantity
+            properties:
+              name:
+                type: string
+              categoryId:
+                type: string
+              price:
+                type: number
+              quantity:
+                type: integer
+              description:
+                type: string
+              image:
+                type: string
+                format: binary
+    responses:
+      201:
+        description: Product created successfully
+
+/product/stockData-get:
+  get:
+    tags:
+      - Product
+    summary: Get stock data with filtering (Higher limit)
+    parameters:
+      - in: query
+        name: categoryId
+        schema:
+          type: string
+      - in: query
+        name: status
+        schema:
+          type: string
+          enum: [in-stock, low-stock, out-of-stock]
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 100
+    responses:
+      200:
+        description: Stock data retrieved successfully
+
+/product/{id}:
+  put:
+    tags:
+      - Product
+    summary: Update an existing product (Admin/Manager only)
+    security:
+      - bearerAuth: []
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              categoryId:
+                type: string
+              price:
+                type: number
+              quantity:
+                type: integer
+              description:
+                type: string
+              image:
+                type: string
+                format: binary
+    responses:
+      200:
+        description: Product updated successfully
+  delete:
+    tags:
+      - Product
+    summary: Delete a product (Admin only)
+    security:
+      - bearerAuth: []
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+    responses:
+      200:
+        description: Product deleted successfully

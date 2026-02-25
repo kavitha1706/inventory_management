@@ -1,0 +1,72 @@
+/category:
+  get:
+    tags:
+      - Category
+    summary: Get all categories
+    parameters:
+      - in: query
+        name: search
+        schema:
+          type: string
+        description: Filter by name
+    responses:
+      200:
+        description: List of categories
+  post:
+    tags:
+      - Category
+    summary: Create a category (Admin only)
+    security:
+      - bearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name: {type: string}
+              description: {type: string}
+    responses:
+      201:
+        description: Category created
+/category/{id}:
+  put:
+    tags:
+      - Category
+    summary: Update a category (Admin only)
+    security:
+      - bearerAuth: []
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name: {type: string}
+              description: {type: string}
+    responses:
+      200:
+        description: Category updated
+  delete:
+    tags:
+      - Category
+    summary: Delete a category (Admin only)
+    security:
+      - bearerAuth: []
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+    responses:
+      200:
+        description: Category deleted
